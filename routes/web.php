@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::resource('usuarios','App\Http\Controllers\UsersController')->names('usuarios');
 
 Route::resource('zapatos','App\Http\Controllers\ZapatoController')->names('zapatos');
+Route::get('zapat','App\Http\Controllers\ZapatoController@edi')->name('edi');
+
+Route::resource('ventas','App\Http\Controllers\VentaController')->names('ventas');
+
 
 Route::resource('empresas','App\Http\Controllers\EmpresaController')->names('empresas');
 

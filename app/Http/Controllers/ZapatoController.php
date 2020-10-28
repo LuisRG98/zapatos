@@ -87,4 +87,11 @@ class ZapatoController extends Controller
         return redirect()->route('empresa.zapatos.index');
     }
 
+    public function edi()
+    {
+        return view('empresa.zapatos.index',[
+            'zapatos'=>Zapato::all()
+        ]);
+    }
+
 }

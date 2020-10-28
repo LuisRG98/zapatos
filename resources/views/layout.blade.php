@@ -29,12 +29,24 @@
             Productos
           </a>
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('zapatos.create') }}">Registrar Material</a>
-              <a class="dropdown-item" href="{{ route('logout') }}">Historial</a>
+              <a class="dropdown-item" href="{{ route('zapatos.create') }}">Registrar</a>
+              <a class="dropdown-item" href="{{ route('edi') }}">Editar</a>
+              <a class="dropdown-item" href="{{ route('zapatos.index') }}">Listado</a>
           </div>
         </li>
+
+       {{--  <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            Ventas
+          </a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{route('ventas.index')}}">Registrar</a>
+              <a class="dropdown-item" href="{{route('ventas.show') }}">Historial</a>
+          </div>
+        </li> --}}
+
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="{{route('ventas.index')}}">Ventas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>

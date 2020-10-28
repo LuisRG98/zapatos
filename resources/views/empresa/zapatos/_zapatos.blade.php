@@ -9,7 +9,7 @@
 } );
 </script>
 <div class="table-responsive-sm">
-<table id="example" class="table-bordered shadow" style="width:100%">
+<table id="example" class="table-bordered shadow" style="width:100%; text-align: center;">
 	<thead>
 		<tr>
 			<th>Código</th>
@@ -28,6 +28,8 @@
 			<td>
 				@if($name = Route::currentRouteName()=='zapatos.index')
 					<a href="{{route('zapatos.show',$zapato)}}">Ver</a>
+				@elseif($name = Route::currentRouteName()=='ventas.store')
+					<a href="{{route('zapatos.edit',$zapato->id)}}">Venta</a>
 				@else
 					<a href="{{route('zapatos.edit',$zapato->id)}}">Editar</a>
 				@endif
