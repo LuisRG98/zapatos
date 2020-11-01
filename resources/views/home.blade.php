@@ -5,16 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Inicio') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                     <h1>
+                        <b>Bienvenido:</b>
+                        {{auth()->user()->rango}}
+                        {{auth()->user()->name}}
+                        {{auth()->user()->lastname1}}
+                    </p></h1>
 
-                    {{ __('Bienvenido Iniciaste Sesión') }}
+                    {{ __('Iniciaste Sesión!') }}
+                     @if( auth()->user()->state=='inactivo')
+                     <p>Su cuenta actualmente no esta activa, contactese con Unidad de Marina Mercante</p>
+                     @endif
                 </div>
             </div>
         </div>

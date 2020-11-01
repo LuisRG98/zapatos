@@ -2,31 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('usuarios','App\Http\Controllers\UsersController')->names('usuarios');
+Route::get('/home', 'UsersController@index')->name('home');
 
-Route::resource('zapatos','App\Http\Controllers\ZapatoController')->names('zapatos');
-Route::get('zapat','App\Http\Controllers\ZapatoController@edi')->name('edi');
+Route::resource('usuarios','UsersController')->names('usuarios');
 
-Route::resource('ventas','App\Http\Controllers\VentaController')->names('ventas');
+Route::resource('zapatos','ZapatoController')->names('zapatos');
+Route::get('zapat','ZapatoController@edi')->name('edi');
+
+Route::resource('ventas','VentaController')->names('ventas');
 
 
-Route::resource('empresas','App\Http\Controllers\EmpresaController')->names('empresas');
+Route::resource('empresas','EmpresaController')->names('empresas');
+
+Route::resource('productos','ProductoController')->names('productos');
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

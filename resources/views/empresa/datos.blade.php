@@ -17,7 +17,6 @@
         }
         </style>
 
-
         <input
             class="form-control bg-light shadow-sm  @error('user_id') is-invalid @enderror border-1"
             type="hidden"
@@ -87,7 +86,7 @@
             <div class="field_wrapper col-md-7">
                 <div class="row">
                     <div class="col-5">
-                        <label for="material[]">Material</label>
+                        <label for="material[]">Sucursal</label>
                         <input 
                             class="form-control bg-light shadow-sm  @error('material[]') is-invalid @enderror border-1"
                             type="text" 
@@ -101,7 +100,7 @@
                     </div>
 
                     <div class="col-5">
-                        <label for="cantidad[]">Cantidad en mts. cuadrados.</label>
+                        <label for="cantidad[]">Numero.</label>
                         <input 
                             class="form-control bg-light shadow-sm  @error('cantidad[]') is-invalid @enderror border-1"
                             type="number" 
@@ -141,13 +140,6 @@
                             });
                         });
                         </script>
-
-
-                        
-
-
-                        
-                        
                 </div>
             </div>
             </div>  

@@ -18,23 +18,30 @@ class CreateZapatosTable extends Migration
             $table->string('codigo');
             $table->string('color');
             $table->string('modelo');
-            $table->string('avatar');
-            $table->string('pt');
-            $table->float('material');
-            $table->string('avatar');
-            $table->integer('t33');
-            $table->integer('t34');
-            $table->integer('t35');
-            $table->integer('t36');
-            $table->integer('t37');
-            $table->integer('t38');
-            $table->integer('t39');
-            $table->integer('t40');
-            $table->integer('t41');
-            $table->integer('t42');
-            $table->integer('t43');
-            $table->integer('t44');
-            $table->unsignedBigInteger('emp_id');
+            $table->string('avatar')->nullable();
+
+            $table->integer('t1')->nullable();
+            $table->integer('t2')->nullable(); 
+            $table->integer('t3')->nullable();
+            $table->integer('t4')->nullable();
+            $table->integer('t5')->nullable();
+            $table->integer('t6')->nullable();
+            $table->integer('t7')->nullable();
+            $table->integer('t8')->nullable();
+            $table->integer('t9')->nullable();
+
+            $table->integer('c1')->nullable();
+            $table->integer('c2')->nullable();
+            $table->integer('c3')->nullable();
+            $table->integer('c4')->nullable();
+            $table->integer('c5')->nullable();
+            $table->integer('c6')->nullable();
+            $table->integer('c7')->nullable();
+            $table->integer('c8')->nullable();
+            $table->integer('c9')->nullable();
+
+
+            $table->unsignedBigInteger('emp_id')->nullable();;
             $table->foreign('emp_id')->references('id')->on('empresas');
             $table->timestamps();
         });

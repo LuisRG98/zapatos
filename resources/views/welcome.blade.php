@@ -14,13 +14,16 @@
 
     <div class="collapse navbar-collapse px-3" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto" >
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('productos.index')}}">¡Catálogo de Productos!</a>
+        </li>
           @guest
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
               </li>
               @if (Route::has('register'))
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                      <a class="nav-link" href="{{ route('register') }}">{{ __('¡Registrate!') }}</a>
                   </li>
               @endif
           @else

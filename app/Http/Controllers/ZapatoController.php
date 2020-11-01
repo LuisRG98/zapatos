@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Zapato;
+use App\Zapato;
 
 class ZapatoController extends Controller
 {
@@ -24,32 +24,75 @@ class ZapatoController extends Controller
     public function create()
     {
         return view('empresa.zapatos.create');
+
     }
 
     public function store(Request $request)
     {
+        
         $zapato=New Zapato;
-        $zapato->t33=$request->t33;
-        $zapato->t34=$request->t34;
-        $zapato->t35=$request->t35;
-        $zapato->t36=$request->t36;
-        $zapato->t37=$request->t37;
-        $zapato->t38=$request->t38;
-        $zapato->t39=$request->t39;
-        $zapato->t40=$request->t40;
-        $zapato->t41=$request->t41;
-        $zapato->t42=$request->t42;
-        $zapato->t43=$request->t43;
-        $zapato->t44=$request->t44;
+
         $zapato->codigo=$request->codigo;
         $zapato->modelo=$request->modelo;
         $zapato->color=$request->color;
-        $zapato->pt=$request->pt;
+
         if ($request->hasFile('avatar'))
         {
             $zapato->avatar=$request->file('avatar')->store('public/productos');
         }
 
+
+
+        $i=0;
+        foreach ($request->talla as $cantidad) 
+        {
+            $vc[$i]=$cantidad;
+            $i=$i+1;
+        }
+
+        if (sizeof($vc) <9) 
+        {
+            for ($i=sizeof($vc); $i <= 9 ; $i++) 
+            { 
+                $vc[$i]=0;
+            }
+        }
+
+        $i=0;
+        foreach ($request->cantidad as $cantidad) 
+        {
+            $vm[$i]=$cantidad;
+            $i=$i+1;
+        }
+
+        if (sizeof($vm) <9) 
+        {
+            for ($i=sizeof($vm); $i <= 9 ; $i++) 
+            { 
+                $vm[$i]=0;
+            }
+        }
+
+
+        $zapato->t1=$vc[0];
+        $zapato->t2=$vc[1];
+        $zapato->t3=$vc[2];
+        $zapato->t4=$vc[3];
+        $zapato->t5=$vc[4];
+        $zapato->t6=$vc[5];
+        $zapato->t7=$vc[6];
+        $zapato->t8=$vc[7];
+        $zapato->t9=$vc[8];
+
+        $zapato->c1=$vm[0];
+        $zapato->c2=$vm[1];
+        $zapato->c3=$vm[2];
+        $zapato->c4=$vm[3];
+        $zapato->c5=$vm[4];
+        $zapato->c6=$vm[5];
+        $zapato->c7=$vm[6];
+        $zapato->c8=$vm[7];
+        $zapato->c9=$vm[8];
         $zapato->save();
 
         return redirect()->route('zapatos.index')->with('success', 'Producto Registrado');
