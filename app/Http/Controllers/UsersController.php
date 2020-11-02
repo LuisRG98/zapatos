@@ -31,11 +31,11 @@ class UsersController extends Controller
         $user=New User;
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->password=bcrypt($request->password);
+        $user->password=$request->password;
         $user->usuario=$request->usuario;
         $user->infoempresa='vacio';
         $user->save();
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 
     public function show($id)

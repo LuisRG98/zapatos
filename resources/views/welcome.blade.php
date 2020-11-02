@@ -50,10 +50,10 @@
     </div>
   </nav>
   <div class="container">
-        <img width="150" height="150" src="./img/logo.png">
+        <img width="150" height="150" src="/img/logo.png">
         <center>
           <h1>Bienvenidos</h1>
-        <img width="500" height="350" src="./img/umsa.jpg">
+        <img width="500" height="350" src="/img/umsa.jpg">
         </center>
   </div>
  
