@@ -41,6 +41,10 @@
 			<tr></tr>
 		</table>
 		<h3>Ganancias del dia: {{$suma}} Bs</h3>
+
+		<br>
+		<hr>
+		<center><a href="{{route('reportes.index')}}">PDF</a></center>
 		</div>
 	</div>
 

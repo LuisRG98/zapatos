@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Zapato;
 use App\Venta;
+use PDF;
 
 class VentaController extends Controller
 {
@@ -39,4 +40,9 @@ class VentaController extends Controller
        return view('empresa.ventas.create',compact('ventas','suma'));
     }
     
+    public function destroy(Request $request)
+    {
+        return $request;
+
+    }
 }

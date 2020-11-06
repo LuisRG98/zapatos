@@ -10,9 +10,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', 'UsersController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('usuarios','UsersController')->names('usuarios');
+
+Route::resource('insumos','InsumoController')->names('insumos');
 
 Route::resource('zapatos','ZapatoController')->names('zapatos');
 Route::get('zapat','ZapatoController@edi')->name('edi');
@@ -23,6 +25,8 @@ Route::resource('ventas','VentaController')->names('ventas');
 Route::resource('empresas','EmpresaController')->names('empresas');
 
 Route::resource('productos','ProductoController')->names('productos');
+
+Route::resource('reportes','ReportController')->names('reportes');
 
 
 Auth::routes();

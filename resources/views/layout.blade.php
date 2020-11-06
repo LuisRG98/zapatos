@@ -1,103 +1,329 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>MicroE</title>
-  <link rel="stylesheet" href="/css/app.css">
 
-  <script src="/js/app.js" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="csrf-token" content="{{csrf_token()}}">
+
+<title>Zapatos</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+<link rel="stylesheet" href="{{mix('css/app.css')}}">
+<script type="text/javascript" src="{{mix('js/app.js')}}" defer></script>
+
+<style>
+a.d:hover
+{
+  background-color: rgb(52,144,211);color: white;
+}
+</style>
 
 </head>
-<body style="background-image: url(/img/img1.jpg);background-repeat: no-repeat;background-image: fixed;background-image: center;background-size: cover;">
-<div class="d-flex flex-column h-screen">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <a class="navbar-brand px-3" href="#">MicroE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="hold-transition sidebar-mini" >
+<div class="wrapper" >
 
-    <div class="collapse navbar-collapse px-3" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        @if(Auth::user()->infoempresa=='vacio')
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('usuarios.index')}}">¡Registrar a tu empresa!</a>
-        </li>
-        @elseif(Auth::user()->infoempresa=='Lleno')
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('usuarios.index')}}">Editar Datos</a>
-        </li>
-        @endif
-        <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            ¡Productos!
-          </a>
-          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('zapatos.create') }}">¡Registrar tus productos!</a>
-              <a class="dropdown-item" href="{{ route('edi') }}">¡Edita tus productos!</a>
-              <a class="dropdown-item" href="{{ route('zapatos.index') }}">Listado de productos</a>
-          </div>
-        </li>
-
-       <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            ¡Ventas!
-          </a>
-          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('ventas.create') }}">¡Historial de ventas!</a>
-              <a class="dropdown-item" href="{{ route('ventas.index') }}">¡Realiza una venta!</a>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('productos.index')}}">¡Catálogo de Productos!</a>
-        </li>
-
-      </ul>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
 
 
-      <ul class="navbar-nav ml-auto" >
-          @guest
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar  elevation-4"  style="background-color:#273746">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="/img/fondo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">MicroE</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          {{-- <img src="/img/user.png" class="img-circle elevation-2" alt="User Image">
+          <img height="100" src="{{Storage::url(auth()->user()->avatar)}}" class="img-circle elevation-2" alt="User Image"> --}}
+        </div>
+        <br>
+        <div class="info">
+          <a href="/usuarios/{{auth()->user()->id}}/edit" class="d-block">
+            {{auth()->user()->name}}</a>
+        </div>
+      </div>
+
+
+
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+          {{-- <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('usuarios.*')}}"style="color: white">
+              <i class="fas fa-user-friends nav-icon "></i>
+              <p class="" >
+                Usuarios
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                <a href="{{route('usuarios.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-address-book nav-icon"></i>
+                  <p>Listado</p>
+                </a>
               </li>
-              @if (Route::has('register'))
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                  </li>
+              <li class="nav-item">
+                <a href="{{route('usuarios.create')}}" class="nav-link px-4" >
+                  <i class="fas fa-user-plus nav-icon"></i>
+                  <p>Nuevo</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('edi')}}" class="nav-link px-4" >
+                  <i class="fas fa-user-edit nav-icon"></i>
+                  <p>Editar</p>
+                </a>
+              </li>
+              @if(auth()->user()->remember_token)
+              <li class="nav-item">
+                <a href="/reset/{{auth()->user()->id}}" class="nav-link px-4" >
+                  <i class="fas fa-key nav-icon"></i>
+                  <p>Restablecer</p>
+                </a>
+              </li>
+              @else
+              <li class="nav-item">
+                <a href="{{route('cambio')}}" class="nav-link px-4" >
+                  <i class="fas fa-key nav-icon"></i>
+                  <p>Cambiar Contraseña</p>
+                </a>
+              </li>
               @endif
-          @else
-              <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                      {{ Auth::user()->name }}
-                  </a>
+            </ul>
+          </li> --}}
 
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                          {{ __('Cerrar Sesión') }}
-                      </a>
 
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                      </form>
-                  </div>
+
+          <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
+              <i class="fas fa-shoe-prints nav-icon"></i>
+              <p>
+                ¡Productos!
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('zapatos.create')}}" class="nav-link px-4" >
+                  
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>¡Registrar tus productos!</p>
+                </a>
               </li>
-          @endguest
-      </ul>
+              <li class="nav-item">
+                <a href="{{route('edi') }}" class="nav-link px-4">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>¡Edita tus productos!</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('zapatos.index')}}" class="nav-link px-4" >
+                  
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Listado de productos</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          {{-- <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
+              <i class="fas fa-shoe-prints nav-icon"></i>
+              <p>
+                ¡Principal Insumo!
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('insumos.create')}}" class="nav-link px-4" >
+                  
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>¡Registrar tus productos!</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('edi') }}" class="nav-link px-4">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>¡Edita tus productos!</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('zapatos.index')}}" class="nav-link px-4" >
+                  
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Listado de productos</p>
+                </a>
+              </li>
+            </ul>
+          </li> --}}
+
+
+          <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('ventas.*')}}" style="color: white">
+              <i class="fas fa-user-tie nav-icon"></i>
+              <p>
+                ¡Ventas!
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">   
+              <li class="nav-item">
+                <a href="{{ route('ventas.create')}}" class="nav-link px-4" >
+                  <i class="fas fa-book-open nav-icon"></i>
+                  <p>¡Historial de ventas!</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('ventas.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-id-badge nav-icon"></i>
+                  <p>¡Realiza una venta!</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          {{-- <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link" style="color: white">
+              <i class="fas fa-file-alt nav-icon"></i>
+              <p class="">
+                Reportes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('reports.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-id-card nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('reports.create')}}" class="nav-link px-4">
+                  <i class="fas fa-anchor nav-icon"></i>
+                  <p>Embarcaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('avanzado')}}" class="nav-link px-4">
+                  <i class="fas fa-atlas nav-icon"></i>
+                  <p>Avanzado</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('historics.index')}}" class="nav-link px-4">
+                  <i class="fas fa-info nav-icon"></i>
+                  <p>Historios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('stats.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-chart-pie nav-icon"></i>
+                  <p>Estadisticas</p>
+                </a>
+              </li>
+            </ul>
+          </li> --}}
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();" style="color: white">
+              <i class="fas fa-sign-out-alt nav-icon"></i>
+              <p>
+                Cerrar Sesión
+              </p>
+            </a>
+          </li>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+
 
     </div>
-  </nav>
+    <!-- /.sidebar -->
+  </aside>
 
-<div class="container py-3">
-<main>
-  @yield('content')
-</main> 
-  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="background-color:#abb2B9">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 px-3 text-dark display-6"><b> VENTA DE ZAPATOS</b></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item text-dark" style="text-decoration: none; margin-right: 30px"><a href="{{route('home')}}">Home</a></li>
+              <li class="breadcrumb-item active" style="margin-right: 30px">Página de Inicio</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content" >
+      <div class="container-fluid">
+        @yield('content')
+        @include('sweetalert::alert')
+        <br>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+
+    <!-- Default to the left -->
+    <strong>Copyright &copy;  2020 <a href="http://www.mindef.gob.bo/maritima/unidad_de%20_marina_mercante.html">MicroE La Paz- Bolivia</a>.</strong> Todos los derechos reservados.
+  </footer>
 </div>
+<!-- ./wrapper -->
 
- 
+<!-- REQUIRED SCRIPTS -->
 
-</div>
+<!-- jQuery -->
 </body>
-
 </html>

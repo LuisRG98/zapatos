@@ -15,12 +15,12 @@
 				@if($user->id)
 					<label for="avatar">Foto de Prodcuto:</label><br>
 					<center>
-					<img width="187px" src="{{Storage::url($user->avatar)}}">
+					<img width="187px" src="{{Storage::url($zapato->avatar)}}">
 					<input
 						type="file"
 						name="avatar"
 						id="avatar"
-						value="{{old('avatar',$user->avatar ?? '')}}">
+						value="{{old('avatar',$zapato->avatar ?? '')}}">
 					</center>
 				@else
 					<label for="avatar">Foto de Prodcuto:</label><br>
@@ -30,7 +30,7 @@
 						type="file"
 						name="avatar"
 						id="avatar"
-						value="{{old('avatar',$user->avatar ?? '')}}">
+						value="{{old('avatar',$zapato->avatar ?? '')}}">
 					</center>
 				@endif
 
@@ -44,7 +44,7 @@
 				name="codigo"
 				id="codigo"
 				placeholder="Código..."
-				value="{{old('codigo',$user->codigo ?? '')}}">
+				value="{{old('codigo',$zapato->codigo ?? '')}}">
 				@error('codigo')
 					<span class="invalid-feedback" role="alert">
 						<strong>{{$message}}</strong>
@@ -60,7 +60,7 @@
 				name="modelo"
 				id="modelo"
 				placeholder="Código..."
-				value="{{old('modelo',$user->modelo ?? '')}}">
+				value="{{old('modelo',$zapato->modelo ?? '')}}">
 				@error('modelo')
 					<span class="invalid-feedback" role="alert">
 						<strong>{{$message}}</strong>
@@ -80,7 +80,7 @@
 				name="color"
 				id="color"
 				placeholder="Código..."
-				value="{{old('color',$user->color ?? '')}}">
+				value="{{old('color',$zapato->color ?? '')}}">
 				@error('color')
 					<span class="invalid-feedback" role="alert">
 						<strong>{{$message}}</strong>

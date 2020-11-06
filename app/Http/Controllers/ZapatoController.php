@@ -106,9 +106,9 @@ class ZapatoController extends Controller
 
     public function edit($id)
     {
-        $zapato = Zapato::findOrFail($id);
+        $user = Zapato::findOrFail($id);
 
-        return view('empresa.zapatos.edit',compact('zapato'));
+        return view('empresa.zapatos.edit',compact('user'));
     }
 
     public function update(Request $request, $id)
