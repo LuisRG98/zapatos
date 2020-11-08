@@ -11,14 +11,17 @@ class VentaController extends Controller
 {
     public function index()
     {
-    	return view('empresa.ventas.index');
+    	// return view('empresa.ventas.index');
+        return view('empresa.ventas.listado',[
+            'zapatos'=>Zapato::all()
+        ]);
     }
 
     public function store(Request $request)
     {
         $venta=new Venta;
 
-        $venta->codigo=null;
+        $venta->codigo=$request->codigo;
         $venta->talla=$request->talla;
         $venta->monto=$request->monto;
         $venta->cantidad=$request->cantidad;
@@ -40,9 +43,18 @@ class VentaController extends Controller
        return view('empresa.ventas.create',compact('ventas','suma'));
     }
     
-    public function destroy(Request $request)
+    public function show($id)
     {
-        return $request;
-
+        $zapato=Zapato::findOrFail($id);
+        $tallas[0]=$zapato->t1;
+        $tallas[1]=$zapato->t2;
+        $tallas[2]=$zapato->t3;
+        $tallas[3]=$zapato->t4;
+        $tallas[4]=$zapato->t5;
+        $tallas[5]=$zapato->t6;
+        $tallas[6]=$zapato->t7;
+        $tallas[7]=$zapato->t8;
+        $tallas[8]=$zapato->t9;
+        return view('empresa.ventas.index',compact('zapato','tallas'));
     }
 }

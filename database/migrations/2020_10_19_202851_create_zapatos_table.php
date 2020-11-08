@@ -40,6 +40,16 @@ class CreateZapatosTable extends Migration
             $table->integer('c8')->nullable();
             $table->integer('c9')->nullable();
 
+            $table->string('cu1')->nullable();
+            $table->string('cu2')->nullable();
+            $table->string('cu3')->nullable();
+            $table->string('cu4')->nullable();
+            $table->string('cu5')->nullable();
+            $table->string('cu6')->nullable();
+            $table->string('cu7')->nullable();
+            $table->string('cu8')->nullable();
+            $table->string('cu9')->nullable();
+
 
             $table->unsignedBigInteger('emp_id')->nullable();;
             $table->foreign('emp_id')->references('id')->on('empresas');

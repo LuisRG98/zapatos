@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Zapato;
+use App\Insumo;
 
 class ZapatoController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('roles:admin',['except'=>['edit','updates']]);
-    // }
-
 
     public function index()
     {
@@ -23,15 +18,33 @@ class ZapatoController extends Controller
 
     public function create()
     {
-        return view('empresa.zapatos.create');
+         
+        $id=auth()->user()->id;
+        $insumos=Insumo::where('emp_id', $id)->get();
+        foreach ($insumos as $insumo) 
+        {
+            $in[0]=$insumo->mat1;
+            $in[1]=$insumo->mat2;
+            $in[2]=$insumo->mat3;
+            $in[3]=$insumo->mat4;
+            $in[4]=$insumo->mat5;
+            $in[5]=$insumo->mat6;
+            $in[6]=$insumo->mat7;
+            $in[7]=$insumo->mat8;
+            $in[8]=$insumo->mat9;
+            $in[9]=$insumo->mat10;
+        }
+
+
+        return view('empresa.zapatos.create', compact('in'));
 
     }
 
     public function store(Request $request)
     {
+
         
         $zapato=New Zapato;
-
         $zapato->codigo=$request->codigo;
         $zapato->modelo=$request->modelo;
         $zapato->color=$request->color;
@@ -73,6 +86,21 @@ class ZapatoController extends Controller
             }
         }
 
+        $i=0;
+        foreach ($request->cuero as $cuero) 
+        {
+            $vcu[$i]=$cuero;
+            $i=$i+1;
+        }
+
+        if (sizeof($vcu) <9) 
+        {
+            for ($i=sizeof($vcu); $i <= 9 ; $i++) 
+            { 
+                $vcu[$i]=null;
+            }
+        }
+
 
         $zapato->t1=$vc[0];
         $zapato->t2=$vc[1];
@@ -93,6 +121,20 @@ class ZapatoController extends Controller
         $zapato->c7=$vm[6];
         $zapato->c8=$vm[7];
         $zapato->c9=$vm[8];
+
+        $zapato->cu1=$vcu[0];
+        $zapato->cu2=$vcu[1];
+        $zapato->cu3=$vcu[2];
+        $zapato->cu4=$vcu[3];
+        $zapato->cu5=$vcu[4];
+        $zapato->cu6=$vcu[5];
+        $zapato->cu7=$vcu[6];
+        $zapato->cu8=$vcu[7];
+        $zapato->cu9=$vcu[8];
+
+        $zapato->emp_id=$request->emp_id;
+
+
         $zapato->save();
 
         return redirect()->route('zapatos.index')->with('success', 'Producto Registrado');

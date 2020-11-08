@@ -127,16 +127,10 @@ a.d:hover
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('zapatos.create')}}" class="nav-link px-4" >
+                <a href="{{route('produccion.index')}}" class="nav-link px-4" >
                   
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>¡Registrar tus productos!</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('edi') }}" class="nav-link px-4">
-                  <i class="fas fa-edit nav-icon"></i>
-                  <p>¡Edita tus productos!</p>
+                  <p>¡Registrar tus producción!</p>
                 </a>
               </li>
 
@@ -145,43 +139,56 @@ a.d:hover
                   
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Listado de productos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('insumos.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Listado de insumos</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          {{-- <li class="nav-item has-treeview ">
+          <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
               <i class="fas fa-shoe-prints nav-icon"></i>
               <p>
-                ¡Principal Insumo!
+                ¡Registra!
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              @if(auth()->user()->infoempresa=="vacio")
+              <li class="nav-item">
+                <a href="{{route('usuarios.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>¡Empresa!</p>
+                </a>
+              </li>
+              @endif
+
+              @if(auth()->user()->infoempresa=="Casi")
               <li class="nav-item">
                 <a href="{{route('insumos.create')}}" class="nav-link px-4" >
-                  
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>¡Registrar tus productos!</p>
+                  <p>¡Principal Insumo!</p>
                 </a>
               </li>
+              @endif
+              <label hidden="hidden">{{$idecito=auth()->user()->id}}</label>
+              @if(auth()->user()->infoempresa=="Lleno")
               <li class="nav-item">
-                <a href="{{route('edi') }}" class="nav-link px-4">
+                <a href="{{route('zapatos.create') }}" class="nav-link px-4">
                   <i class="fas fa-edit nav-icon"></i>
-                  <p>¡Edita tus productos!</p>
+                  <p>¡Productos!</p>
                 </a>
               </li>
-
-              <li class="nav-item">
-                <a href="{{route('zapatos.index')}}" class="nav-link px-4" >
-                  
-                  <i class="fas fa-list-ul nav-icon"></i>
-                  <p>Listado de productos</p>
-                </a>
-              </li>
+              @endif
             </ul>
-          </li> --}}
+          </li>
 
 
           <li class="nav-item has-treeview ">

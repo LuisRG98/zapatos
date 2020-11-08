@@ -39,10 +39,23 @@
                 @enderror
         </div>
 
+
         <div class="col-2">
             <br>
             <a href="javascript:void(0);" class="add_button" title="Add field"><img src="/img/add-icon.png" width="20" height="20"></a>
         </div>
+
+        <input 
+            class="form-control bg-light shadow-sm  border-1"
+            hidden="hidden" 
+            name="emp_id" 
+            value="{{auth()->user()->emp_id}}"/>
+
+        <input 
+            class="form-control bg-light shadow-sm  border-1"
+            hidden="hidden" 
+            name="user_id" 
+            value="{{auth()->user()->id}}"/>
 
 
                         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

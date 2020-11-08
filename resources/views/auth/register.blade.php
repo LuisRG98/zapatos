@@ -61,17 +61,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="usuario" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Usuario') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="usuario" type="password" class="form-control @error('usuario') is-invalid @enderror" name="usuario">
-                                <option>Cliente</option>
-                                <option>Empresario</option>
-                                </select>
-
-                            </div>
-                        </div>
+                       
+                            
+                        <input 
+                            id="usuario" 
+                            type="text" 
+                            name="usuario" 
+                            hidden="hidden" 
+                            value="Empresario">
 
 
                         <div class="form-group row mb-0">

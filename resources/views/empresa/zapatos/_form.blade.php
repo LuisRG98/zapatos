@@ -68,6 +68,11 @@
 				@enderror
 			</div>
 
+		<input 
+            class="form-control bg-light shadow-sm  border-1"
+            hidden="hidden" 
+            name="emp_id" 
+            value="{{auth()->user()->emp_id}}"/>
 
 
 		</div>
@@ -90,9 +95,9 @@
 
 
 
-			<div class="field_wrapper col-md-12">
-                <div class="row">
-                    <div class="col-5">
+
+                <div class="row field_wrapper">
+                    <div class="col-3">
                         <label for="talla[]">Talla</label>
                         <input 
                             class="form-control bg-light shadow-sm  @error('talla[]') is-invalid @enderror border-1"
@@ -106,8 +111,22 @@
                             @enderror
                     </div>
 
+
+
+                     <div class="col-3">
+                        <label for="cuero[]">Tipo de Cuero</label>
+                            <select
+	                            class="form-control bg-light shadow-sm"
+	                            name="cuero[]">
+	                            @foreach($in as $insumo)
+	                            	@if($insumo!=null)
+		                            	<option>{{$insumo}}</option>
+		                            @endif
+	                            @endforeach
+                            </select>
+                    </div>
                     <div class="col-5">
-                        <label for="cantidad[]">Cantidad.</label>
+                        <label for="cantidad[]">Cant. de Cuero x par.</label>
                         <input 
                             class="form-control bg-light shadow-sm  @error('cantidad[]') is-invalid @enderror border-1"
                             type="number" 
@@ -120,19 +139,21 @@
                             @enderror
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-1">
                         <br>
                         <a href="javascript:void(0);" class="add_button" title="Add field"><img src="/img/add-icon.png" width="20" height="20"></a>
                     </div>
 
 
+
+                    </div>
                         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                         <script type="text/javascript">
                         $(document).ready(function(){
                             var maxField = 10; //Input fields increment limitation
                             var addButton = $('.add_button'); //Add button selector
                             var wrapper = $('.field_wrapper'); //Input field wrapper
-                            var fieldHTML = '<br><div class="row"><div class="col-5"><input class="form-control bg-light shadow-sm  @error('talla[]') is-invalid @enderror border-1" type="text" name="talla[]" value=""/></div><div class="col-5"><input class="form-control bg-light shadow-sm  @error('cantidad[]') is-invalid @enderror border-1" type="number" name="cantidad[]" value=""/></div><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="/img/remove-icon.png" width="20" height="20"></a></div>'; //New input field html 
+                            var fieldHTML = '<div class=" container form-group required py-1 mb-0"><div class="row field_wrapper"><div class="col-3"><input class="form-control bg-light shadow-sm  @error('talla[]') is-invalid @enderror border-1" type="text" name="talla[]" value=""/></div><div class="col-3"><select class="form-control bg-light shadow-sm" name="cuero[]">@foreach($in as $insumo)@if($insumo!=null)<option>{{$insumo}}</option> @endif @endforeach </select></div><div class="col-5"><input class="form-control bg-light shadow-sm  @error('cantidad[]') is-invalid @enderror border-1" type="number" name="cantidad[]" value=""/></div><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="/img/remove-icon.png" width="20" height="20"></a></div></div>'; //New input field html 
                             var x = 1; //Initial field counter is 1
                             $(addButton).click(function(){ //Once add button is clicked
                                 if(x < maxField){ //Check maximum number of input fields
@@ -147,8 +168,7 @@
                             });
                         });
                         </script>
-                </div>
-            </div>
+                
 		</div>
 
 	</div>

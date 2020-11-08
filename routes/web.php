@@ -16,6 +16,8 @@ Route::resource('usuarios','UsersController')->names('usuarios');
 
 Route::resource('insumos','InsumoController')->names('insumos');
 
+Route::resource('produccion','ProduccionController')->names('produccion');
+
 Route::resource('zapatos','ZapatoController')->names('zapatos');
 Route::get('zapat','ZapatoController@edi')->name('edi');
 
