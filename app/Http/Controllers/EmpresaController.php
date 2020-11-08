@@ -11,32 +11,7 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
 
-    	$tamañoc=sizeof($request->cantidad);
-    	$tamañom=sizeof($request->material);
-    	
-    	$i=0;
-    	foreach ($request->material as $material) 
-    	{
-    		$vm[$i]=$material;
-    		$i=$i+1;
-    	}
 
-    	$i=0;
-    	foreach ($request->cantidad as $cantidad) 
-    	{
-    		$vc[$i]=$cantidad;
-    		$i=$i+1;
-    	}
-    	
-
-    	if (sizeof($vc) <9) 
-    	{
-    		for ($i=sizeof($vc); $i <= 9 ; $i++) 
-	    	{ 
-	    		$vc[$i]=0;
-	    		$vm[$i]=null;
-	    	}
-    	}
 
     	$empresa=New Empresa;
     	$empresa->nombre=$request->nemp;
