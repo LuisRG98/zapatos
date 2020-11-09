@@ -10,12 +10,10 @@
 					<img src="{{$producto}}" width="200" height="200">
 					</center>
 					<div class="product-info panel">
-						<p>descripcion</p>
-						<h3>
-							<span class="badge badge-success">Precio</span>
-						</h3>
+						<br>
+						
 						<p>
-							<a class="btn btn-warning" href="#">La quiero</a>
+							{{-- <a class="btn btn-warning" href="#">La quiero</a> --}}
 							<a class="btn btn-primary" href="#">Leer mas</a>
 						</p>
 					</div>

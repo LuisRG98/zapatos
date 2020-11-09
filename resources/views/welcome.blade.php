@@ -5,7 +5,7 @@
      <link rel="stylesheet"href="/css/app.css">
   <script src="/js/app.js" defer></script>
  </head>
- <body >
+ <body style="background-image: url(/img/img1.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: cover">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <a class="navbar-brand px-3" href="#">MicroE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +50,13 @@
     </div>
   </nav>
   <div class="container">
-        <img width="150" height="150" src="/img/logo.png">
+        
+        
+          
+        <img src="/img/loguito.png">
         <center>
-          <h1>Bienvenidos</h1>
-        <img width="500" height="350" src="/img/umsa.jpg">
+        <h1 style="color: white;border: 1px">Bienvenidos</h1>
+        
         </center>
   </div>
  

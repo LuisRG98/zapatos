@@ -1,0 +1,20 @@
+detallar
+entradas 
+salidas  porcesos
+ 
+
+anotar el cargado de base de datos, que ellos complentar infor
+1 vacio de base de datos
+2 indicar q informacion no estara en la base de datos
+3 condiciones a de tener el sistema de la informacion historica
+4 completar la informacio, para integracio con datos faltantes
+
+
+tabla comparrativa
+corregir
+indicar los cirreres de las inspecciones
+
+pedir dato de autentificacion
+
+
+añadir usuario
