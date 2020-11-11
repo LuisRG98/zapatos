@@ -25,7 +25,7 @@
 				@else
 					<label for="avatar">Foto de Prodcuto:</label><br>
 					<center>
-					<img width="197px" src="{{Storage::url('/nuevo.jpg')}}">
+					<img width="197px" src="{{Storage::url('/img/profilespics/dis.png')}}">
 					<input
 						type="file"
 						name="avatar"

@@ -11,9 +11,9 @@ class ZapatoController extends Controller
 
     public function index()
     {
-        return view('empresa.zapatos.index',[
-            'zapatos'=>Zapato::all()
-        ]);
+        $id=auth()->user()->emp_id;
+        $zapatos=Zapato::where('emp_id',$id)->get();
+        return view('empresa.zapatos.index',compact('zapatos'));
     }
 
     public function create()

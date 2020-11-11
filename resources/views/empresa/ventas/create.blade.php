@@ -18,6 +18,7 @@
 		<table id="example" class="table-bordered shadow" style="width:100%; text-align: center;">
 			<thead>
 				<tr>
+					<th>Fecha de Venta</th>
 					<th>Código</th>
 					<th>Talla</th>
 					<th>Cantidad</th>
@@ -29,6 +30,7 @@
 			<tbody>
 				@foreach($ventas as $venta)
 				<tr>
+					<td>{{$venta->created_at}}</td>
 					<td>{{$venta->codigo}}</td>
 					<td>{{$venta->talla}}</td>
 					<td>{{$venta->cantidad}}</td>

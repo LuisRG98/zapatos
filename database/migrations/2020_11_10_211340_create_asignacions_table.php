@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateZapatosTable extends Migration
+class CreateAsignacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateZapatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('zapatos', function (Blueprint $table) {
+        Schema::create('asignacions', function (Blueprint $table) {
             $table->id();
             $table->string('codigo');
             $table->string('color');
             $table->string('modelo');
-            $table->string('avatar')->default('public/img/profilespics/dis.png');
-
+            $table->string('avatar')->nullable();
 
             $table->integer('t1')->nullable();
             $table->integer('t2')->nullable(); 
@@ -52,8 +51,12 @@ class CreateZapatosTable extends Migration
             $table->string('cu9')->nullable();
 
 
-            $table->unsignedBigInteger('emp_id')->nullable();
+            $table->unsignedBigInteger('emp_id')->nullable();;
+            $table->unsignedBigInteger('zapato_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('emp_id')->references('id')->on('empresas');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('zapato_id')->references('id')->on('zapatos');
             $table->timestamps();
         });
     }
@@ -65,6 +68,6 @@ class CreateZapatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zapatos');
+        Schema::dropIfExists('asignacions');
     }
 }

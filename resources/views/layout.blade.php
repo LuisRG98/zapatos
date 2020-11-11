@@ -70,52 +70,36 @@ a.d:hover
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          {{-- <li class="nav-item has-treeview ">
-            <a href="#" class="d nav-link {{setActive('usuarios.*')}}"style="color: white">
-              <i class="fas fa-user-friends nav-icon "></i>
-              <p class="" >
-                Usuarios
+          <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('empresas.*')}}" style="color: white">
+              <i class="fas fa-address-card nav-icon"></i>
+              <p>
+                ¡Empresa!
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              @if(auth()->user()->infoempresa=="vacio")
               <li class="nav-item">
-                <a href="{{route('usuarios.index')}}" class="nav-link px-4" >
-                  <i class="fas fa-address-book nav-icon"></i>
-                  <p>Listado</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('usuarios.create')}}" class="nav-link px-4" >
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Nuevo</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('edi')}}" class="nav-link px-4" >
-                  <i class="fas fa-user-edit nav-icon"></i>
-                  <p>Editar</p>
-                </a>
-              </li>
-              @if(auth()->user()->remember_token)
-              <li class="nav-item">
-                <a href="/reset/{{auth()->user()->id}}" class="nav-link px-4" >
-                  <i class="fas fa-key nav-icon"></i>
-                  <p>Restablecer</p>
+                <a href="{{route('empresas.create')}}" class="nav-link px-4" >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Registra</p>
                 </a>
               </li>
               @else
               <li class="nav-item">
-                <a href="{{route('cambio')}}" class="nav-link px-4" >
-                  <i class="fas fa-key nav-icon"></i>
-                  <p>Cambiar Contraseña</p>
+                <a href="{{route('empresas.edit',auth()->user()->emp_id)}}" class="nav-link px-4" >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Editar inf.</p>
                 </a>
               </li>
               @endif
+
+              
+              
             </ul>
-          </li> --}}
-
-
+          </li>
 
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
@@ -126,71 +110,65 @@ a.d:hover
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
+              @if(auth()->user()->infoempresa=="Lleno")
               <li class="nav-item">
-                <a href="{{route('produccion.index')}}" class="nav-link px-4" >
-                  
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>¡Registrar tus producción!</p>
+                <a href="{{route('zapatos.create') }}" class="nav-link px-4">
+                  <i class="fas fa-edit nav-icon"></i>
+                  <p>Registrar</p>
+                </a>
+              </li>
+              @endif
+
+              <li class="nav-item">
+                <a href="{{route('zapatos.index')}}" class="nav-link px-4" > 
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Listado</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="{{route('zapatos.index')}}" class="nav-link px-4" >
-                  
-                  <i class="fas fa-list-ul nav-icon"></i>
-                  <p>Listado de productos</p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                <a href="{{route('insumos.index')}}" class="nav-link px-4" >
-                  <i class="fas fa-list-ul nav-icon"></i>
-                  <p>Listado de insumos</p>
-                </a>
-              </li>
             </ul>
           </li>
 
           <li class="nav-item has-treeview ">
-            <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
+            <a href="#" class="d nav-link {{setActive('insumos.*')}}" style="color: white">
               <i class="fas fa-shoe-prints nav-icon"></i>
               <p>
-                ¡Registra!
+                ¡Principal Insumo!
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               
-              @if(auth()->user()->infoempresa=="vacio")
-              <li class="nav-item">
-                <a href="{{route('usuarios.index')}}" class="nav-link px-4" >
-                  <i class="fas fa-plus nav-icon"></i>
-                  <p>¡Empresa!</p>
-                </a>
-              </li>
-              @endif
-
               @if(auth()->user()->infoempresa=="Casi")
               <li class="nav-item">
                 <a href="{{route('insumos.create')}}" class="nav-link px-4" >
                   <i class="fas fa-plus nav-icon"></i>
-                  <p>¡Principal Insumo!</p>
+                  <p>Registrar</p>
                 </a>
               </li>
               @endif
-              <label hidden="hidden">{{$idecito=auth()->user()->id}}</label>
-              @if(auth()->user()->infoempresa=="Lleno")
+
               <li class="nav-item">
-                <a href="{{route('zapatos.create') }}" class="nav-link px-4">
-                  <i class="fas fa-edit nav-icon"></i>
-                  <p>¡Productos!</p>
+                <a href="{{route('insumos.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Listado</p>
+                </a>
+              </li>
+
+              @if(auth()->user()->infoempresa=="Lleno")              
+              <li class="nav-item">
+                <a href="{{route('produccion.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>¡Registra tu producción!</p>
                 </a>
               </li>
               @endif
             </ul>
           </li>
 
-
+          
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('ventas.*')}}" style="color: white">
               <i class="fas fa-user-tie nav-icon"></i>
@@ -215,6 +193,29 @@ a.d:hover
             </ul>
           </li>
 
+          <li class="nav-item has-treeview ">
+            <a href="#" class="d nav-link {{setActive('ventas.*')}}" style="color: white">
+              <i class="fas fa-user-tie nav-icon"></i>
+              <p>
+                Sucursales
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">   
+              <li class="nav-item">
+                <a href="{{ route('sucursales.create')}}" class="nav-link px-4" >
+                  <i class="fas fa-book-open nav-icon"></i>
+                  <p>Nueva</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('ventas.index')}}" class="nav-link px-4" >
+                  <i class="fas fa-id-badge nav-icon"></i>
+                  <p>¡Realiza una venta!</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           {{-- <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link" style="color: white">
@@ -290,7 +291,7 @@ a.d:hover
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 px-3 text-dark display-6"><b> VENTA DE ZAPATOS</b></h1>
+            
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

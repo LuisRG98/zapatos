@@ -51,7 +51,7 @@
 					value="{{$zapato->id}}">
 					
 			</div>
-			<button class="btn btn-primary btn-large btn-block">Realizar Venta</button>
+			<button class="btn btn-primary btn-large btn-block">Guardar</button>
 		</div>
 	</form>
 	</div>

@@ -7,6 +7,7 @@
         <form class="bg-white shadow rounded py-3 px-4" method="POST" action="{{route('empresas.store')}}">
             <h1 class="display-5">Registrar tu Empresa</h1><hr>
             @csrf
+            @csrf
 
         <style>
         .required label:after {
@@ -16,6 +17,15 @@
         }
         </style>
 
+        <input
+            class="form-control bg-light shadow-sm  @error('user_id') is-invalid @enderror border-1"
+            type="hidden"
+            name="user_id"
+            id="user_id"
+            readonly
+            value="{{old('user_id',$empresa->user_id ?? auth()->user()->id)}}">
+
+
 
         <div class="form-group col-md-12 required">
             <div class="row">
@@ -23,11 +33,11 @@
                 <label for="nemp">Nombre de Empresa:</label>
                 <input
                     class="form-control bg-light shadow-sm  @error('nemp') is-invalid @enderror border-1"
-                    name="nemp"
-                    id="nemp"
+                    name="nombre"
+                    id="nombre"
                     type="text"
-                    value="{{old('nemp',$empresa->nemp ?? $reg ?? '')}}">
-                    @error('nemp')
+                    value="{{old('nombre',$empresa->nombre ?? $reg ?? '')}}">
+                    @error('nombre')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
@@ -52,14 +62,14 @@
 
             <div class="col-md-6">
 
-                <label for="nref">Número de Referencia:</label>
+                <label for="numero">Número de Referencia:</label>
                 <input
-                    class="form-control bg-light shadow-sm  @error('nref') is-invalid @enderror border-1"
-                    name="nref"
-                    id="nref"
+                    class="form-control bg-light shadow-sm  @error('numero') is-invalid @enderror border-1"
+                    name="numero"
+                    id="numero"
                     type="number"
-                    value="{{old('nref',$empresa->nref ?? $reg ?? '')}}">
-                    @error('nref')
+                    value="{{old('numero',$empresa->numero ?? $reg ?? '')}}">
+                    @error('numero')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
@@ -67,14 +77,12 @@
                     <br>
 
                 <label for="sucursales">Sucursales:</label>
-                <textarea
+                <input
                     class="form-control bg-light shadow-sm  @error('sucursales') is-invalid @enderror border-1"
                     name="sucursales"
                     id="sucursales"
-                    type="number"
                     value="{{old('sucursales',$empresa->sucursales ?? $reg ?? '')}}">
-                    
-                </textarea>
+
             </div>
             </div>  
         </div>

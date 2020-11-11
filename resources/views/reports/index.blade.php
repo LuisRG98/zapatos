@@ -35,8 +35,9 @@
 <table width="100%" class="example-table">
 	<tr>
 		<th style="background-color: #76adbc" width="5%">N°</th>
-		<th style="background-color: #76adbc" width="30%">Código</th>
-		<th style="background-color: #76adbc" width="35%">Talla</th>
+		<th style="background-color: #76adbc" width="25%">Fecha de Venta</th>
+		<th style="background-color: #76adbc" width="10%">Código</th>
+		<th style="background-color: #76adbc" width="15%">Talla</th>
 		<th style="background-color: #76adbc" width="10%">Cantidad</th>
 		<th style="background-color: #76adbc" width="10%">Precio de Venta (Bs)</th>
 		<th style="background-color: #76adbc" width="10%">Ingreso (Bs)</th>
@@ -45,6 +46,7 @@
 	@foreach($ventas as $venta)
 	<tr>
 		<td>{{$i=$i+1}}</td>
+		<td>{{$venta->created_at}}</td>
 		<td>{{$venta->codigo}}</td>
 		<td>{{$venta->talla}}</td>
 		<td>{{$venta->cantidad}}</td>
@@ -54,6 +56,7 @@
 
 	</tr>
 	@endforeach
+	<h3>Ganancias Totales:{{$suma}} Bs.</h3>
 </table>
 <br>
 
