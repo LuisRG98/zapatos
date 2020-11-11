@@ -114,10 +114,7 @@ a.d:hover
   <div class="content-wrapper" style="background-image: url(/img/img1.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: cover">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <center>
-        <h3>Bienvenidos</h3>
-        <img width="197px" src="/storage/img/profilespics/dis.png">
-      </center>
+       <h3>Bienvenidos</h3>
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
