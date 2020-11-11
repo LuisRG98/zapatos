@@ -19,7 +19,7 @@ class ZapatoController extends Controller
     public function create()
     {
          
-        $id=auth()->user()->id;
+        $id=auth()->user()->emp_id;
         $insumos=Insumo::where('emp_id', $id)->get();
         foreach ($insumos as $insumo) 
         {

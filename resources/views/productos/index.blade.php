@@ -5,16 +5,16 @@
 		<div id="products" >
 			@foreach($productos as $producto)
 				<div class="product white-panel">
-					<h3>Nombre</h3><hr>
+					<h3>Código: {{$producto->codigo}}</h3><hr>
 					<center>
-					<img src="{{$producto}}" width="200" height="200">
+					<img src="{{Storage::url($producto->avatar)}}" width="200" height="200">
 					</center>
 					<div class="product-info panel">
 						<br>
 						
 						<p>
 							{{-- <a class="btn btn-warning" href="#">La quiero</a> --}}
-							<a class="btn btn-primary" href="#">Leer mas</a>
+							<a class="btn btn-primary" href="{{route('productos.show',$producto->id)}}">Leer mas</a>
 						</p>
 					</div>
 				</div>

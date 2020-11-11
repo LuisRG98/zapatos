@@ -29,3 +29,10 @@ margin-top: -5px;
 transition: all 0.3s ease-in-out;
 }
 
+.product-block
+{
+	background-color: #fff;
+	border-radius:  1em;
+	padding: 1em;
+
+}

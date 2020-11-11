@@ -70,6 +70,7 @@ a.d:hover
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+          @if(auth()->user()->usuario=="Empresario")
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('empresas.*')}}" style="color: white">
               <i class="fas fa-address-card nav-icon"></i>
@@ -79,7 +80,6 @@ a.d:hover
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
               @if(auth()->user()->infoempresa=="vacio")
               <li class="nav-item">
                 <a href="{{route('empresas.create')}}" class="nav-link px-4" >
@@ -95,11 +95,9 @@ a.d:hover
                 </a>
               </li>
               @endif
-
-              
-              
             </ul>
           </li>
+          @endif
 
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('zapatos.*')}}" style="color: white">
@@ -110,7 +108,7 @@ a.d:hover
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+              @if(auth()->user()->usuario=="Empresario")
               @if(auth()->user()->infoempresa=="Lleno")
               <li class="nav-item">
                 <a href="{{route('zapatos.create') }}" class="nav-link px-4">
@@ -119,6 +117,7 @@ a.d:hover
                 </a>
               </li>
               @endif
+              @endif
 
               <li class="nav-item">
                 <a href="{{route('zapatos.index')}}" class="nav-link px-4" > 
@@ -126,11 +125,10 @@ a.d:hover
                   <p>Listado</p>
                 </a>
               </li>
-
-
             </ul>
           </li>
 
+          @if(auth()->user()->usuario=="Empresario")
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('insumos.*')}}" style="color: white">
               <i class="fas fa-shoe-prints nav-icon"></i>
@@ -167,6 +165,7 @@ a.d:hover
               @endif
             </ul>
           </li>
+          @endif
 
           
           <li class="nav-item has-treeview ">
@@ -193,6 +192,7 @@ a.d:hover
             </ul>
           </li>
 
+          @if(auth()->user()->usuario=="Empresario")
           <li class="nav-item has-treeview ">
             <a href="#" class="d nav-link {{setActive('ventas.*')}}" style="color: white">
               <i class="fas fa-user-tie nav-icon"></i>
@@ -216,49 +216,7 @@ a.d:hover
               </li>
             </ul>
           </li>
-
-          {{-- <li class="nav-item has-treeview ">
-            <a href="#" class="d nav-link" style="color: white">
-              <i class="fas fa-file-alt nav-icon"></i>
-              <p class="">
-                Reportes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('reports.index')}}" class="nav-link px-4" >
-                  <i class="fas fa-id-card nav-icon"></i>
-                  <p>Usuarios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('reports.create')}}" class="nav-link px-4">
-                  <i class="fas fa-anchor nav-icon"></i>
-                  <p>Embarcaciones</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('avanzado')}}" class="nav-link px-4">
-                  <i class="fas fa-atlas nav-icon"></i>
-                  <p>Avanzado</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('historics.index')}}" class="nav-link px-4">
-                  <i class="fas fa-info nav-icon"></i>
-                  <p>Historios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('stats.index')}}" class="nav-link px-4" >
-                  <i class="fas fa-chart-pie nav-icon"></i>
-                  <p>Estadisticas</p>
-                </a>
-              </li>
-            </ul>
-          </li> --}}
-
+          @endif
 
           <li class="nav-item">
             <a href="#" class="nav-link"

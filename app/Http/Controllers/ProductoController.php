@@ -3,26 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Zapato;
+use App\Zapato;
+use App\Empresa;
+use Alert;
 
 class ProductoController extends Controller
 {
     public function index()
     {
-    	$productos = array(
-    		"/img/img2.jpg",
-    		"/img/img2.jpg",
-    		"/img/img2.jpg",
-    		"/img/img1.jpg",
-	    	"/img/logo.png",
-	    	"/img/umsa.jpg",
-	    	"/img/img1.jpg",
-	    	"/img/logo.png",
-	    	"/img/umsa.jpg",
-    	);
-    	    	
-    	
-
-    	return view('productos.index',compact('productos'));
+        $productos=Zapato::all();
+        if($productos=='[]')
+        {
+            return redirect()->back()->with('info','No existen productos disponibles');
+        }
+        else
+        {
+    	   return view('productos.index',compact('productos'));
+        
+        }
+    }
+    public function show($id)
+    {
+        $zapato=Zapato::FindOrFail($id);
+        $empresa=Empresa::FindOrFail($zapato->emp_id);
+         return view('productos.show',compact('zapato'));
     }
 }
