@@ -18,7 +18,7 @@ class CreateZapatosTable extends Migration
             $table->string('codigo');
             $table->string('color');
             $table->string('modelo');
-            $table->string('avatar')->default('public/img/profilespics/dis.png');
+            $table->string('avatar')->default('/storage/img/profilespics/dis.png');
 
 
             $table->integer('t1')->nullable();

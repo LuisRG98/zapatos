@@ -143,6 +143,7 @@ a.d:hover
     </div>
     <!-- /.content -->
   </div>
+  <img width="197px" src="/storage/img/profilespics/dis.png">
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
