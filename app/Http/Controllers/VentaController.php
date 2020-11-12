@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Zapato;
 use App\Venta;
+use App\Produccion;
 use PDF;
 
 class VentaController extends Controller
@@ -55,6 +56,11 @@ class VentaController extends Controller
         $tallas[6]=$zapato->t7;
         $tallas[7]=$zapato->t8;
         $tallas[8]=$zapato->t9;
-        return view('empresa.ventas.index',compact('zapato','tallas'));
+        $prod=Produccion::where('zapato_id', $id)->get();
+        foreach ($prod as $cant) 
+        {
+            $cantidad=$cant->cantidad;
+        }
+        return view('empresa.ventas.index',compact('zapato','tallas','cantidad'));
     }
 }

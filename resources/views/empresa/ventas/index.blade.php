@@ -49,6 +49,8 @@
 						class="form-control bg-light shadow-sm 	@error('cantidad') is-invalid @enderror border-1"
 						type="number"
 						name="cantidad"
+						max="{{$cantidad}}"
+						min="1"
 						id="cantidad"
 						value="{{old('cantidad',$venta->cantidad ?? '')}}">
 						@error('monto')

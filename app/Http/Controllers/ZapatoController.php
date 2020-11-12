@@ -51,7 +51,7 @@ class ZapatoController extends Controller
 
         if ($request->hasFile('avatar'))
         {
-            $zapato->avatar=$request->file('avatar')->store('/productos');
+            $zapato->avatar=$request->file('avatar')->store('public/productos');
         }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Zapato;
 use App\Insumo;
+use App\Produccion;
 
 use Illuminate\Http\Request;
 
@@ -134,6 +135,15 @@ class ProduccionController extends Controller
                 $insum->save();
             }
         }
+
+        $p=new Produccion;
+        $p->cantidad=$request->cantidad;
+        $p->zapato_id=$request->codigo;
+        $p->emp_id=auth()->user()->emp_id;
+        $p->user_id=auth()->user()->id;
+        $p->save();
+
+
 
 
         return redirect()->route('insumos.index')->with('success','Cantidad de Insumos Actualizada');
